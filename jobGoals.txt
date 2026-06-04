@@ -1,0 +1,9 @@
+Jobs   | Applied | Offer | Accepted
+Google |  Yes    | No    | No 
+Netflix | Yes    | Yes   | Yes 
+Amazon  | Yes    | Yes   | Yes 
+One Pay | Yes    | No    | No 
+Facebook | Yes   | No    | No 
+NVIDIA  | Yes    | No    | No 
+Uber    | Yes    | No    | No 
+Doordash | Yes   | Yes   | Yes 
