@@ -1,6 +1,6 @@
 #------------Today's imports -----------------#
 import dis
-
+from operator import itemgetter, attrgetter
 #recap on what we learned yesterday
 
 #iterators are actually cool i do noot know much but here is
@@ -151,3 +151,68 @@ print(add_two(3))
 
 print((trace(lambda x: x**2))(3))
 
+#mor examples functions are first class we pass them around
+def shout(resp):
+    return resp.upper() + "!"
+greet = shout("hi")
+print(greet)
+
+#lambda's are anynomus functions, it is Instant Invoke Function execution
+
+sumOfdebt = lambda x, y : x + y + 2
+print(sumOfdebt(1, 2))
+
+#map and filter are great iterator uses in both regular function and lambda
+#functions
+
+nums = [1, 2, 3, 4, 5]
+print(list(map(lambda n: n*n, nums)))
+print(list(filter(lambda x: x % 2 == 0, nums)))
+
+#the above map and filter are example of high order function in lambda 
+#calculus but you know comprehensions are even better
+
+print([n*n for n in nums])
+print([x for x in nums if x % 2 == 0])
+
+
+""" 
+So where does high order become the goat we know?
+with sorted() with keys = 
+
+ """
+
+people = [
+    {"name": "Alice", "age":24,},
+    {"name": "Bob", "age": 54,},
+    {"name": "Marcus", "age": 29},
+]
+
+print(sorted(people, key = lambda p: p["age"]))
+print(sorted(people, key = lambda p: p["name"]))
+
+oldest = max(people, key = lambda p: p["age"])
+print(oldest)
+
+#even faster we can use itemgetter
+
+print(sorted(people, key = itemgetter("age")))
+
+data_list = [
+    {"name": "Carlesberg", "price": 45, "in_stock": True},
+    {"name": "Tuborg", "price": 60, "in_stock": True},
+    {"name": "Heineken", "price": 90, "in_stock": False},
+    {"name": "Redbull", "price": 5, "in_stock": True},
+    {"name": "Margarita Don Julio", "price": 545, "in_stock": True},
+    {"name": "Patron", "price": 300, "in_stock": False},
+]
+in_stock = [stock for stock in data_list if stock["in_stock"]]
+minimum_val_bev = sorted(in_stock, key = lambda p: p["price"]) [:3]
+print("3 chepaest drinks: ", minimum_val_bev)
+
+under_ten_dollar = [p["name"] for p in data_list if p["price"] < 10]
+print("Names of drink under $10 is: ", under_ten_dollar)
+# print(sorted(data_list, key = lambda x : min(x["price"])))
+
+expensive_bev = max(data_list, key = lambda p: p["price"])
+print("Most expensive drink is: ", expensive_bev)
